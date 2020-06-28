@@ -1,0 +1,26 @@
+html {
+  background-color: #E4E9FD;
+  background-image: -webkit-linear-gradient(65deg, #A683E3 50%, #E4E9FD 50%);
+  min-height: 1000px;
+  font-family: 'helvetica neue';
+}
+
+p {
+  color: #00204a;
+  font-size: 1.8rem;
+  font-weight: 200;
+  margin: 0;
+  padding: 20px 0;
+}
+
+input {
+    margin: .4rem;
+}
+
+.control-label {
+  font-size: 1.8rem;
+}
+
+.btn-danger.disabled, .btn-danger:disabled {
+  opacity: 0.3;
+}

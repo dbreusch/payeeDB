@@ -1,0 +1,86 @@
+<%- include('partials/header') %>
+
+<div class="jumbotron centered">
+  <div class="container">
+    <h1 class="display-4">Database Admin</h1>
+
+    <div class="row">
+      <div class="col-sm">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="">Database Creation</h2>
+          </div>
+
+          <div class="card-body">
+
+            <!-- Makes POST request to /login route -->
+            <form action="/dbcreate" method="post">
+              <div class="form-group">
+
+                <div class="input-group">
+                  <label for="text" class="control-label">Filename</label>
+                  <div class="col-sm">
+                    <input type="text" class="form-control" name="filename" placeholder="inputFile.csv" autofocus>
+                  </div>
+                </div>
+
+                <p>Database type?</p>
+
+                <div class="">
+                  <input type="radio" name="checkbox" value="original" checked>
+                  <label for="original">Original (raw transactions with payee names)</label>
+                </div>
+
+                <div class="">
+                  <input type="radio" name="checkbox" value="final">
+                  <label for="final">Final (payee names with budget categories)</label>
+                </div>
+
+              </div>
+
+              <button type="submit" name="load" class="btn btn-outline-primary btn-lg">Load</button>
+              <button type="submit" name="cancel" value="" class="btn btn-outline-danger btn-lg">Cancel</button>
+
+            </form>
+
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2 class="">Database Destruction</h2>
+          </div>
+
+          <div class="card-body">
+            <form action="/dbdelete" method="post">
+              <div class="form-group">
+
+                <div class="input-group">
+                  <label for="text" class="control-label">Database</label>
+                  <div class="col-sm">
+                    <input type="text" class="form-control" name="dbname">
+                  </div>
+                </div>
+
+                <p>Confirmation</p>
+
+                <div class="">
+                  <input id="confirmbox" type="checkbox" name="confirmbox" value="confirm" onClick="<%= tools.showalert(this) %>" checked>
+                  <label for="confirm" class="">Confirm database deletion</label>
+                </div>
+
+              </div>
+
+              <button type="submit" name="delete" class="btn-lg btn-danger disabled">Delete</button>
+              <button type="submit" name="abort" value="" class="btn-lg btn-primary">Abort</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

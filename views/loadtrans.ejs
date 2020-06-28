@@ -1,0 +1,30 @@
+<%- include('partials/header') %>
+
+<div class="jumbotron centered">
+  <div class="container">
+    <h1 class="display-4">Load Transactions</h1>
+
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="card">
+          <div class="card-body">
+
+            <!-- Makes POST request to /login route -->
+            <form action="/loadtrans" method="POST">
+              <div class="form-group">
+                <label for="text">Filename</label>
+                <input type="text" class="form-control" name="filename" autofocus autocomplete="off">
+              </div>
+              <button type="submit" class="btn btn-light">Load</button>
+              <button type="submit" name="cancel" value="1" class="btn btn-dark">Cancel</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
