@@ -1,0 +1,38 @@
+{{>pageHeader}}
+{{>header}}
+
+<div class="jumbotron centered">
+  <div class="container">
+    <h1 class="display-6">Database Admin : {{subTitle}} </h1>
+
+    <div class="row">
+      <div class="col-sm">
+
+        <div class="card">
+          <!-- <div class="card-header">
+            <h2 class="">Database Export</h2>
+          </div> -->
+
+          <div class="card-body">
+            <form action="/dbexport" method="POST">
+
+              <div class="input-group">
+                <label for="text" class="control-label">Filename</label>
+                <div class="col-sm">
+                  <input type="text" class="form-control" name="filename" placeholder="outputFile.csv" autofocus>
+                </div>
+              </div>
+
+              <button type="submit" name="export" class="btn btn-outline-primary btn-lg">Export</button>
+              <button type="submit" name="cancel" value="1" class="btn btn-outline-danger btn-lg">Cancel</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{{>footer}}

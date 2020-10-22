@@ -5,6 +5,10 @@ html {
   font-family: 'helvetica neue';
 }
 
+h1 {
+  margin-bottom: 0;
+}
+
 p {
   color: #00204a;
   font-size: 1.8rem;
@@ -21,6 +25,44 @@ input {
   font-size: 1.8rem;
 }
 
-.btn-danger.disabled, .btn-danger:disabled {
+.btn-danger.disabled, .btn-danger:disabled, .btn-outline-danger.disabled, .btn-outline-danger:disabled {
   opacity: 0.3;
+}
+
+.jumbotron {
+  padding-top: 3rem;
+  margin-bottom: 0;
+}
+
+.jumbotron h1 {
+  margin-bottom: 10px;
+}
+
+.card-body {
+  background-color: #e9ecef;
+}
+
+header {
+  background-color: #e9ecef;
+}
+
+header h1 {
+  margin-left: 10px;
+  color: #888888;
+  font-size: 4rem;
+}
+
+form {
+  background-color: #e9ecef;
+}
+
+footer {
+  padding: 10px;
+  color: #777777;
+  background-color: #e9ecef;
+  font-size: 1.25rem;
+}
+
+.lead {
+  font-size: 2rem;
 }

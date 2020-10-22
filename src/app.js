@@ -1,31 +1,37 @@
 //jshint esversion:6
 require('dotenv').config()
 
-const express = require("express");
-const bodyParser = require("body-parser");
-const ejs = require("ejs");
-const mongoose = require("mongoose");
+const path = require('path')
+const express = require('express');
+const bodyParser = require('body-parser');
+// const ejs = require('ejs');
+const hbs = require('hbs')
+const mongoose = require('mongoose');
 const parse = require('csv-parse/lib/sync');
 const fs = require('fs');
-const tools = require(__dirname + "/tools.js");
-
-// ======================
-// var jsdom = require("jsdom");
-// const { JSDOM } = jsdom;
-// const { window } = new JSDOM();
-// const { document } = (new JSDOM('')).window;
-// global.document = document;
-//
-// var $ = jQuery = require('jquery')(window);
-// ======================
 
 // set up Express and create app and app options
 const localPort = 3000;
 
 const app = express();
 
-app.use(express.static("public"));
-app.set('view engine', 'ejs');
+//Define paths for Express config
+const publicDirPath = path.join(__dirname, '../public')
+const viewsPath = path.join(__dirname, '../templates/views')
+const partialsPath = path.join(__dirname, '../templates/partials')
+
+// Setup handlebars engine and views location
+app.set('view engine', 'hbs')
+app.set('views', viewsPath)
+hbs.registerPartials(partialsPath)
+
+// Setup static directory to serve
+app.use(express.static(publicDirPath))
+
+// // Setup EJS engine and views location
+// app.set('view engine', 'ejs');
+// app.set('views', viewsPath)
+
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -73,16 +79,32 @@ const Budget = mongoose.model("Budget", budgetSchema);
 
 // get Home
 app.get("/", function(req, res) {
-  res.render("home");
+  res.render("index");
 });
 
-// get Load Database
-app.get("/loaddb", function(req, res) {
-  res.render("loaddb");
+// app.get("/loaddb", function(req, res) {
+//   res.render("loaddb");
+// });
+
+// get Create Database
+app.get("/dbcreate", function(req, res) {
+  res.render("dbCreate", {
+    subTitle: 'Create'
+  } );
 });
 
-app.get("/dbadmin", function(req, res) {
-  res.render("dbAdmin", { tools: tools } );
+// get Delete Database
+app.get("/dbdelete", function(req, res) {
+  res.render("dbDelete", {
+    subTitle: 'Delete'
+  } );
+});
+
+// get Export Database
+app.get("/dbexport", function(req, res) {
+  res.render("dbExport", {
+    subTitle: 'Export'
+  } );
 });
 
 // get Load Transactions
@@ -90,7 +112,7 @@ app.get("/loadtrans", function(req, res) {
   res.render("loadtrans");
 });
 
-// post Load DB
+// post Create DB
 app.post("/dbcreate", function(req, res) {
 
   if (req.body.cancel != null) {
@@ -150,10 +172,10 @@ app.post("/dbcreate", function(req, res) {
   }
 });
 
-// post delete DB
-app.post("/dbdelete", function(req, res) {
-  console.log("dbdelete");
-  console.log(req.body);
+// post Delete DB
+app.post("/dbDelete", function(req, res) {
+  // console.log("dbdelete");
+  // console.log(req.body);
 
   if (req.body.abort != null) {
     res.redirect("/");
@@ -167,14 +189,29 @@ app.post("/dbdelete", function(req, res) {
   }
 });
 
+// post Export DB
+app.post("/dbExport", function(req, res) {
+  // console.log("dbexport");
+  // console.log(req.body);
+
+  if (req.body.cancel != null) {
+    res.redirect("/");
+  } else {
+    // console.log(confirm);
+
+    const dbname = req.body.dbname;
+
+    console.log("dbname is " + dbname);
+    res.send("Will export " + dbname);
+  }
+});
+
 // post Load Transactions
 app.post("/loadtrans", function(req, res) {
   if (req.body.cancel != null) {
     res.redirect("/");
   } else {
-
     const ifn = req.body.filename;
-
     const buf = fs.readFileSync(ifn, "utf8");
     const inputTrans = parse(buf, {
       columns: true,

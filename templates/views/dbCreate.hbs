@@ -1,15 +1,16 @@
-<%- include('partials/header') %>
+{{>pageHeader}}
+{{>header}}
 
 <div class="jumbotron centered">
   <div class="container">
-    <h1 class="display-4">Database Admin</h1>
+    <h1 class="display-6">Database Admin : {{subTitle}} </h1>
 
     <div class="row">
       <div class="col-sm">
         <div class="card">
-          <div class="card-header">
+          <!-- <div class="card-header">
             <h2 class="">Database Creation</h2>
-          </div>
+          </div> -->
 
           <div class="card-body">
 
@@ -46,41 +47,10 @@
           </div>
         </div>
 
-        <div class="card">
-          <div class="card-header">
-            <h2 class="">Database Destruction</h2>
-          </div>
-
-          <div class="card-body">
-            <form action="/dbdelete" method="post">
-              <div class="form-group">
-
-                <div class="input-group">
-                  <label for="text" class="control-label">Database</label>
-                  <div class="col-sm">
-                    <input type="text" class="form-control" name="dbname">
-                  </div>
-                </div>
-
-                <p>Confirmation</p>
-
-                <div class="">
-                  <input id="confirmbox" type="checkbox" name="confirmbox" value="confirm" onClick="<%= tools.showalert(this) %>" checked>
-                  <label for="confirm" class="">Confirm database deletion</label>
-                </div>
-
-              </div>
-
-              <button type="submit" name="delete" class="btn-lg btn-danger disabled">Delete</button>
-              <button type="submit" name="abort" value="" class="btn-lg btn-primary">Abort</button>
-            </form>
-          </div>
-        </div>
-
       </div>
 
     </div>
   </div>
 </div>
 
-<%- include('partials/footer') %>
+{{>footer}}

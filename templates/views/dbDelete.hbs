@@ -1,0 +1,50 @@
+{{>pageHeader}}
+{{>header}}
+
+<div class="jumbotron centered">
+  <div class="container">
+    <h1 class="display-6">Database Admin : {{subTitle}} </h1>
+
+    <div class="row">
+      <div class="col-sm">
+
+        <div class="card">
+          <!-- <div class="card-header">
+            <h2 class="">Database Destruction</h2>
+          </div> -->
+
+          <div class="card-body">
+            <form action="/dbdelete" method="post">
+              <div class="form-group">
+
+                <div class="input-group">
+                  <label for="text" class="control-label">Database</label>
+                  <div class="col-sm">
+                    <input type="text" class="form-control" name="dbname" autofocus>
+                  </div>
+                </div>
+
+                <p>Confirmation</p>
+
+                <div class="">
+                  <input id="confirmbox" type="checkbox" name="confirmbox" value="confirm">
+                  <label for="confirm" class="">Confirm database deletion</label>
+                </div>
+
+              </div>
+
+              <button id="delete" type="submit" name="delete" class="btn btn-outline-danger btn-lg disabled">Delete</button>
+              <button type="submit" name="abort" value="" class="btn btn-outline-success btn-lg">Abort</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="/js/utils.js"></script>
+
+{{>footer}}
