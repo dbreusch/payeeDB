@@ -2,7 +2,7 @@
 require('dotenv').config()
 
 const path = require('path')
-const fs = require('fs');
+const fs = require('fs')
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -15,7 +15,7 @@ const Payee = require('./models/payee')
 const Budget = require('./models/budget')
 
 // set up Express and create app and app options
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3001
 const app = express();
 
 //Define paths for Express config
@@ -83,7 +83,16 @@ app.post('/dbcreate', function(req, res) {
     const ifn = req.body.filename;
     const dbType = req.body.checkbox;
 
-    const buf = fs.readFileSync(ifn, 'utf8');
+    try {
+      const buf = fs.readFileSync(ifn, 'utf8');
+    } catch (err) {
+      if (err.code === 'ENOENT') {
+        return res.status(404).send('Filename not found')
+      } else {
+        throw err;
+      }
+    }
+
     const inputRecords = parse(buf, {
       columns: true,
       skip_empty_lines: true,
@@ -173,7 +182,17 @@ app.post('/loadtrans', function(req, res) {
     res.redirect('/');
   } else {
     const ifn = req.body.filename;
-    const buf = fs.readFileSync(ifn, 'utf8');
+
+    try {
+      const buf = fs.readFileSync(ifn, 'utf8');
+    } catch (err) {
+      if (err.code === 'ENOENT') {
+        return res.status(404).send('Filename not found')
+      } else {
+        throw err;
+      }
+    }
+
     const inputTrans = parse(buf, {
       columns: true,
       skip_empty_lines: true,
