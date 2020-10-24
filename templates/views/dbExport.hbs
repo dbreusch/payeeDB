@@ -14,7 +14,7 @@
           </div> -->
 
           <div class="card-body">
-            <form action="/dbexport" method="POST">
+            <form name="myForm" action="/dbexport" method="POST" onsubmit="return validateForm()">
 
               <div class="input-group">
                 <label for="text" class="control-label">Filename</label>
@@ -23,8 +23,8 @@
                 </div>
               </div>
 
-              <button type="submit" name="export" class="btn btn-outline-primary btn-lg">Export</button>
-              <button type="submit" name="cancel" value="1" class="btn btn-outline-danger btn-lg">Cancel</button>
+              <button type="submit" name="export" class="btn btn-outline-primary btn-lg" onclick="handleClick(this);">Export</button>
+              <button type="submit" name="cancel" value="1" class="btn btn-outline-danger btn-lg" onclick="handleClick(this);">Cancel</button>
             </form>
 
           </div>
@@ -34,5 +34,7 @@
     </div>
   </div>
 </div>
+
+<script src="/js/validate.js"></script>
 
 {{>footer}}

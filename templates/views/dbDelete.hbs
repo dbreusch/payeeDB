@@ -14,7 +14,7 @@
           </div> -->
 
           <div class="card-body">
-            <form action="/dbdelete" method="post">
+            <form name="myForm" action="/dbdelete" method="post" onsubmit="return validateForm()">
               <div class="form-group">
 
                 <div class="input-group">
@@ -33,8 +33,8 @@
 
               </div>
 
-              <button id="delete" type="submit" name="delete" class="btn btn-outline-danger btn-lg disabled" disabled>Delete</button>
-              <button type="submit" name="abort" value="" class="btn btn-outline-success btn-lg">Abort</button>
+              <button id="delete" type="submit" name="delete" class="btn btn-outline-danger btn-lg disabled" disabled onclick="handleClick(this);">Delete</button>
+              <button type="submit" name="cancel" value="1" class="btn btn-outline-success btn-lg" onclick="handleClick(this);">Abort</button>
             </form>
           </div>
         </div>
@@ -45,6 +45,7 @@
   </div>
 </div>
 
-<script src="/js/utils.js"></script>
+<script src="/js/confirm.js"></script>
+<script src="/js/validate.js"></script>
 
 {{>footer}}

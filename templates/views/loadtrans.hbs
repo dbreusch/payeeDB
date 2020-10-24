@@ -11,7 +11,7 @@
           <div class="card-body">
 
             <!-- Makes POST request to /login route -->
-            <form action="/loadtrans" method="POST">
+            <form name="myForm" action="/loadtrans" method="POST" onsubmit="return validateForm()">
               <div class="input-group">
                 <label for="text" class="control-label">Filename</label>
                 <div class="col-sm">
@@ -24,8 +24,8 @@
                 <input type="text" class="form-control" name="filename" autofocus autocomplete="off">
               </div> -->
 
-              <button type="submit" class="btn btn-outline-primary btn-lg">Load</button>
-              <button type="submit" name="cancel" value="1" class="btn btn-outline-danger btn-lg">Cancel</button>
+              <button type="submit" class="btn btn-outline-primary btn-lg" onclick="handleClick(this);">Load</button>
+              <button type="submit" name="cancel" value="1" class="btn btn-outline-danger btn-lg" onclick="handleClick(this);">Cancel</button>
             </form>
 
           </div>
@@ -35,5 +35,7 @@
     </div>
   </div>
 </div>
+
+<script src="/js/validate.js"></script>
 
 {{>footer}}

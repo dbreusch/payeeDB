@@ -1,5 +1,4 @@
-{{>pageHeader}}
-{{>header}}
+{{>pageHeader}} {{>header}}
 
 <div class="jumbotron centered">
   <div class="container">
@@ -15,7 +14,7 @@
           <div class="card-body">
 
             <!-- Makes POST request to /login route -->
-            <form action="/dbcreate" method="post">
+            <form name="myForm" action="/dbcreate" method="post" onsubmit="return validateForm()">
               <div class="form-group">
 
                 <div class="input-group">
@@ -39,8 +38,8 @@
 
               </div>
 
-              <button type="submit" name="load" class="btn btn-outline-primary btn-lg">Load</button>
-              <button type="submit" name="cancel" value="" class="btn btn-outline-danger btn-lg">Cancel</button>
+              <button type="submit" name="load" class="btn btn-outline-primary btn-lg" onclick="handleClick(this);">Load</button>
+              <button type="submit" name="cancel" value="1" class="btn btn-outline-danger btn-lg" onclick="handleClick(this);">Cancel</button>
 
             </form>
 
@@ -52,5 +51,7 @@
     </div>
   </div>
 </div>
+
+<script src="/js/validate.js"></script>
 
 {{>footer}}
